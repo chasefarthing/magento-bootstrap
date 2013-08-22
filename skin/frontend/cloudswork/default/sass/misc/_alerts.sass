@@ -1,0 +1,61 @@
+	
+//
+// Alerts
+// --------------------------------------------------
+
+
+// Base styles
+// -------------------------
+
+.alert
+	padding: $base-alert-padding
+	margin-bottom: $base-alert-margin-bottom
+	color: $base-alert-font-color
+	background-color: $base-alert-bg
+	border: 1px solid $base-alert-border-color
+	border-radius: $base-alert-border-radius
+
+	// Headings for larger alerts
+	h4
+		margin-top: 0
+		// Specified for the h4 to prevent conflicts of changing @headingsColor
+		color: inherit
+	// Match the hr to the border of the alert
+	hr
+		border-top-color: darken($base-alert-border-color, 5%)
+	// Provide class for links that match alerts
+	.alert-link
+		font-weight: $base-alert-link-font-weight
+		color: darken($base-alert-font-color, 10%)
+
+	// Improve alignment and spacing of inner content
+	> p,
+	> ul
+		margin-bottom: 0
+	> p + p
+		margin-top: 5px
+
+// Dismissable alerts
+//
+// Expand the right padding and account for the close button's positioning.
+
+.alert-dismissable
+	padding-right: ($base-alert-padding + 20)
+
+	// Adjust close link position
+	.close
+		position: relative
+		top: -2px
+		right: -21px
+		color: inherit
+
+// Alternate styles
+//
+// Generate contextual modifier classes for colorizing the alert.
+
+.alert-success
+	+alert-variant($base-alert-success-bg, $base-alert-success-border-color, $base-alert-success-font-color)
+.alert-danger
+	+alert-variant($base-alert-danger-bg, $base-alert-danger-border-color, $base-alert-danger-font-color)
+.alert-info
+	+alert-variant($base-alert-info-bg, $base-alert-info-border-color, $base-alert-info-font-color)

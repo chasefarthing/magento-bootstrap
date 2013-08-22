@@ -1,0 +1,136 @@
+	
+//
+// Mixins
+// --------------------------------------------------
+
+
+// Utilities
+// -------------------------
+
+// Clearfix
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+// contenteditable attribute is included anywhere else in the document.
+// Otherwise it causes space to appear at the top and bottom of elements
+//  that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+// `:before` to contain the top-margins of child elements.
+=clearfix()
+	&:before,
+	&:after
+		content: " " /* 1 */
+		display: table /* 2 */
+	&:after
+		clear: both
+
+
+// Webkit-style focus
+=tab-focus()
+	// Default
+	outline: thin dotted #333
+	// Webkit
+	outline: 5px auto -webkit-focus-ring-color
+	outline-offset: -2px
+
+// Center-align a block level element
+=center-block()
+	display: block
+	margin-left: auto
+	margin-right: auto
+
+// Sizing shortcuts
+=size($width, $height)
+	width: $width
+	height: $height
+
+=square($size)
+	+size($size, $size)
+
+// Placeholder text
+=placeholder($color: $base-input-color-placeholder)
+	&:-moz-placeholder
+		color: $color
+	&::-moz-placeholder
+		color: $color
+	&:-ms-input-placeholder
+		color: $color
+	&::-webkit-input-placeholder
+		color: $color
+
+// Text overflow
+// Requires inline-block or block for proper styling
+=text-overflow()
+	overflow: hidden
+	text-overflow: ellipsis
+	white-space: nowrap
+
+// CSS image replacement
+// Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
+=hide-text()
+	font: 0/0 a
+	color: transparent
+	text-shadow: none
+	background-color: transparent
+	border: 0
+
+
+// COMPONENT MIXINS
+// --------------------------------------------------
+
+// Horizontal dividers
+// -------------------------
+// Dividers (basically an hr) within dropdowns and nav lists
+=nav-divider($top: #e5e5e5)
+	height: 1px // 1px for background, one for border
+	margin: (($line-height-computed / 2) - 1) 0
+	overflow: hidden
+	background-color: $top
+
+
+
+
+
+
+
+
+
+// Navbar vertical align
+// -------------------------
+// Vertically center elements in the navbar.
+// Example: an element has a height of 30px, so write out `.navbarVerticalAlign(30px)` to calculate the appropriate top margin.
+=navbar-vertical-align($element-height)
+	margin-top: (($base-navbar-height - $element-height) / 2)
+	margin-bottom: (($base-navbar-height - $element-height) / 2)
+
+
+
+
+
+// Framework mixins
+// --------------------------------------------------
+
+=list-unstyled
+	margin-left: 0
+	list-style: none
+
+=nav-justified
+	width: 100%
+	> li
+		float: none
+		display: table-cell
+		width: 1%
+		> a
+			text-align: center
+
+// Move borders to anchors instead of bottom of list
+=nav-tabs-justified ()
+	border-bottom: 0
+	> li > a
+		border-bottom: 1px solid #ddd
+
+		// Override margin from .nav-tabs
+		margin-right: 0
+	> .active > a
+		border-bottom-color: $body-bg
